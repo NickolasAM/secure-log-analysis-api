@@ -6,6 +6,7 @@ class LogEntry(BaseModel):
     level: str
     message: str
 
+log_storage = []
 app = FastAPI()
 
 @app.get("/")
@@ -14,9 +15,17 @@ def root():
     
 @app.post("/upload")
 def upload_log(entry: LogEntry):
+    log_storage.append(entry.model_dump())
     return {"status": "received", "entry": entry.model_dump()}
 
 @app.post("/upload/batch")
 def upload_logs(entries: list[LogEntry]):
+    for entry in entries:
+        log_storage.append(entry.model_dump())
     return {"status": "received", "count": len(entries)}
 
+@app.get("/logs")
+def get_logs():
+    return {"count": len(log_storage), "logs": log_storage}
+
+    
