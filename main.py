@@ -26,6 +26,7 @@ def upload_logs(entries: list[LogEntry]):
 
 @app.get("/logs")
 def get_logs():
+    level: str | None = None
     return {"count": len(log_storage), "logs": log_storage}
 
     
