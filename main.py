@@ -25,8 +25,9 @@ def upload_logs(entries: list[LogEntry]):
     return {"status": "received", "count": len(entries)}
 
 @app.get("/logs")
-def get_logs():
-    level: str | None = None
-    return {"count": len(log_storage), "logs": log_storage}
+def get_logs(level: str | None = None):
+    if level is None:
+        return {"count": len(log_storage), "logs": log_storage}
 
-    
+    filtered = [log for log in log_storage if log["level"] == level]
+    return {"count": len (filtered), "logs": filtered}
