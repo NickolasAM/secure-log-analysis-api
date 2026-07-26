@@ -25,7 +25,7 @@ def upload_logs(entries: list[LogEntry]):
     return {"status": "received", "count": len(entries)}
 
 @app.get("/logs")
-def get_logs(level: str | None = None, start: str | None = None, end: str | None = None):
+def get_logs(level: str | None = None, start: str | None = None, end: str | None = None, search: str | None = None):
     results = log_storage
 
     if level is not None:
@@ -36,5 +36,8 @@ def get_logs(level: str | None = None, start: str | None = None, end: str | None
 
     if end is not None:
         results = [log for log in results if log["timestamp"] <= end]
+
+    if search is not None:
+        results = [log for log in results if search.lower() in log["message"].lower()]
 
     return {"count": len(results), "logs": results}
