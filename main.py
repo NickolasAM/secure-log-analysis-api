@@ -39,7 +39,8 @@ def get_logs(level: str | None = None, start: str | None = None, end: str | None
 
     if search is not None:
         results = [log for log in results if search.lower() in log["message"].lower()]
-
+    
+    total = len(results)
     results = results[skip : skip + limit]
     
-    return {"count": len(results), "logs": results}
+    return {"total": total, "count": len(results), "logs": results}
