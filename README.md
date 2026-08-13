@@ -121,3 +121,4 @@ Security is treated as a first-class concern in this project, not an afterthough
 ## About
 
 I built this to learn backend development properly and to have a real, working project that demonstrates what I can do — not just tutorial code. Through it I've become comfortable with FastAPI and gained a clearer understanding of how APIs work under the hood. I'm building it with security in mind from the start, because I want to demonstrate the mindset of thinking about how an application is protected — not just making it run.
+
