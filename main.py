@@ -12,7 +12,6 @@ engine = create_engine("sqlite:///logs.db")
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
 
-log_storage = []
 app = FastAPI()
 
 @app.on_event("startup")
