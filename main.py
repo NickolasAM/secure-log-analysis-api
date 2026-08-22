@@ -4,6 +4,9 @@ from sqlmodel import SQLModel, Field, create_engine, Session, select
 class LogEntry(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     timestamp: str
+    event_type: str | None = None
+    source_ip: str | None = None
+    username: str | None = None
     level: str
     message: str
 
